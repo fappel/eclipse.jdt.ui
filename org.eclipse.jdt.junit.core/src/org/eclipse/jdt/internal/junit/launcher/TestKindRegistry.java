@@ -33,6 +33,7 @@ public class TestKindRegistry {
 
 	public static final String JUNIT3_TEST_KIND_ID= "org.eclipse.jdt.junit.loader.junit3"; //$NON-NLS-1$
 	public static final String JUNIT4_TEST_KIND_ID= "org.eclipse.jdt.junit.loader.junit4"; //$NON-NLS-1$
+	public static final String JUNIT5_TEST_KIND_ID= "org.eclipse.jdt.junit.loader.junit5"; //$NON-NLS-1$
 
 	public static TestKindRegistry getDefault() {
 		if (fgRegistry != null)
@@ -107,6 +108,9 @@ public class TestKindRegistry {
 	public static String getContainerTestKindId(IJavaElement element) {
 		if (element != null) {
 			IJavaProject project= element.getJavaProject();
+			if (CoreTestSearchEngine.is80OrHigher(project) && CoreTestSearchEngine.hasJUnit5TestAnnotation(project)) {
+				return JUNIT5_TEST_KIND_ID;
+			}
 			if (CoreTestSearchEngine.is50OrHigher(project) && CoreTestSearchEngine.hasTestAnnotation(project)) {
 				return JUNIT4_TEST_KIND_ID;
 			}

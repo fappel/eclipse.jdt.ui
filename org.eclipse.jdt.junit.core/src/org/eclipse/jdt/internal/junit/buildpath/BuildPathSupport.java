@@ -216,6 +216,9 @@ public class BuildPathSupport {
 			};
 		}
 	};
+
+	public static final JUnitPluginDescription JUNIT5_PLUGIN= new JUnitPluginDescription(
+			"org.junit5.api", new VersionRange("[5.0.0,6.0.0)"), "junit5-api-5.*.jar", "junit5-api-5.*.jar", "org.junit5.api.source", "source-bundle/", JUnitPreferencesConstants.JUNIT5_JAVADOC); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
 	
 	/**
 	 * @return the JUnit3 classpath container
@@ -257,6 +260,10 @@ public class BuildPathSupport {
 	 */
 	public static IClasspathEntry getHamcrestCoreLibraryEntry() {
 		return HAMCREST_CORE_PLUGIN.getLibraryEntry();
+	}
+
+	public static IClasspathEntry getJUnit5LibraryEntry() {
+		return JUNIT5_PLUGIN.getLibraryEntry();
 	}
 
 }

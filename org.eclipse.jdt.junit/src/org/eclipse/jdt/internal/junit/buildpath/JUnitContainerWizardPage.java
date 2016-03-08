@@ -120,7 +120,8 @@ public class JUnitContainerWizardPage extends NewElementWizardPage implements IC
 		fVersionCombo= new Combo(composite, SWT.READ_ONLY);
 		fVersionCombo.setItems(new String[] {
 				JUnitMessages.JUnitContainerWizardPage_option_junit3,
-				JUnitMessages.JUnitContainerWizardPage_option_junit4
+				JUnitMessages.JUnitContainerWizardPage_option_junit4,
+				JUnitMessages.JUnitContainerWizardPage_option_junit5,
 		});
 		fVersionCombo.setFont(composite.getFont());
 
@@ -130,8 +131,10 @@ public class JUnitContainerWizardPage extends NewElementWizardPage implements IC
 
 		if (fContainerEntryResult != null && JUnitCore.JUNIT3_CONTAINER_PATH.equals(fContainerEntryResult.getPath())) {
 			fVersionCombo.select(0);
-		} else {
+		} else if (fContainerEntryResult != null && JUnitCore.JUNIT4_CONTAINER_PATH.equals(fContainerEntryResult.getPath())) {
 			fVersionCombo.select(1);
+		} else {
+			fVersionCombo.select(2);
 		}
 		fVersionCombo.addModifyListener(new ModifyListener() {
 			@Override
@@ -182,7 +185,10 @@ public class JUnitContainerWizardPage extends NewElementWizardPage implements IC
 
 		IClasspathEntry libEntry;
 		IPath containerPath;
-		if (fVersionCombo != null && fVersionCombo.getSelectionIndex() == 1) {
+		if (fVersionCombo != null && fVersionCombo.getSelectionIndex() == 2) {
+			containerPath= JUnitCore.JUNIT5_CONTAINER_PATH;
+			libEntry= BuildPathSupport.getJUnit5LibraryEntry();
+		} else if (fVersionCombo != null && fVersionCombo.getSelectionIndex() == 1) {
 			containerPath= JUnitCore.JUNIT4_CONTAINER_PATH;
 			libEntry= BuildPathSupport.getJUnit4LibraryEntry();
 		} else {
@@ -194,6 +200,10 @@ public class JUnitContainerWizardPage extends NewElementWizardPage implements IC
 
 		if (libEntry == null) {
 			status.setError(JUnitMessages.JUnitContainerWizardPage_error_version_not_available);
+		} else if (JUnitCore.JUNIT5_CONTAINER_PATH.equals(containerPath)) {
+			if (fProject != null && !JUnitStubUtility.is80OrHigher(fProject)) {
+				status.setWarning(JUnitMessages.JUnitContainerWizardPage_warning_java8_required);
+			}
 		} else if (JUnitCore.JUNIT4_CONTAINER_PATH.equals(containerPath)) {
 			if (fProject != null && !JUnitStubUtility.is50OrHigher(fProject)) {
 				status.setWarning(JUnitMessages.JUnitContainerWizardPage_warning_java5_required);

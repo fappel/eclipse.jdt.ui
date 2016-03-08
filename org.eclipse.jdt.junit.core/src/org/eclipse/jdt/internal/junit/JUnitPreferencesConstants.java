@@ -68,6 +68,11 @@ public class JUnitPreferencesConstants {
 	 * Javadoc location for JUnit 4
 	 */
 	public static final String JUNIT4_JAVADOC= JUnitCorePlugin.PLUGIN_ID + ".junit4.javadoclocation"; //$NON-NLS-1$
+	
+	/**
+	 * Javadoc location for JUnit 5
+	 */
+	public static final String JUNIT5_JAVADOC= JUnitCorePlugin.PLUGIN_ID + ".junit5.javadoclocation"; //$NON-NLS-1$
 
 	/**
 	 * Javadoc location for org.hamcrest.core (JUnit 4)

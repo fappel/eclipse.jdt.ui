@@ -79,6 +79,8 @@ public class JUnitCore {
 	 */
 	public final static IPath JUNIT4_CONTAINER_PATH= new Path(JUNIT_CONTAINER_ID).append("4"); //$NON-NLS-1$
 
+	public final static IPath JUNIT5_CONTAINER_PATH= new Path(JUNIT_CONTAINER_ID).append("5"); //$NON-NLS-1$
+
 	/**
 	 * Adds a listener for test runs.
 	 *

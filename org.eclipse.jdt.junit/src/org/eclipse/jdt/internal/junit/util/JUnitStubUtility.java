@@ -295,6 +295,10 @@ public class JUnitStubUtility {
 		return CoreTestSearchEngine.is50OrHigher(compliance);
 	}
 
+	public static boolean is80OrHigher(IJavaProject project) {
+		return CoreTestSearchEngine.is80OrHigher(project);
+	}
+
 	public static String[] getParameterTypeNamesForSeeTag(IMethod overridden) {
 		try {
 			ASTParser parser= ASTParser.newParser(ASTProvider.SHARED_AST_LEVEL);
@@ -328,6 +332,7 @@ public class JUnitStubUtility {
 		}
 		return result;
 	}
+
 
 
 }

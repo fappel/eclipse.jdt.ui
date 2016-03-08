@@ -58,11 +58,14 @@ public final class JUnitMessages extends NLS {
 
 	public static String JUnitAddLibraryProposa_junit4_label;
 
+	public static String JUnitAddLibraryProposa_junit5_label;
+
 	public static String JUnitAddLibraryProposal_info;
 	public static String JUnitAddLibraryProposal_title;
 	public static String JUnitAddLibraryProposal_cannotAdd;
 
 	public static String JUnitAddLibraryProposal_junit4_info;
+	public static String JUnitAddLibraryProposal_junit5_info;
 	public static String JUnitAddLibraryProposal_label;
 
 	public static String JUnitContainerWizardPage_combo_label;
@@ -78,6 +81,8 @@ public final class JUnitMessages extends NLS {
 	public static String JUnitContainerWizardPage_option_junit3;
 
 	public static String JUnitContainerWizardPage_option_junit4;
+	
+	public static String JUnitContainerWizardPage_option_junit5;
 
 	public static String JUnitClasspathFixProcessor_progress_desc;
 
@@ -88,6 +93,8 @@ public final class JUnitMessages extends NLS {
 	public static String JUnitContainerWizardPage_source_not_found;
 
 	public static String JUnitContainerWizardPage_warning_java5_required;
+	
+	public static String JUnitContainerWizardPage_warning_java8_required;
 
 	public static String JUnitContainerWizardPage_wizard_description;
 

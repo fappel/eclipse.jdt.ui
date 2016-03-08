@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: JUnit 5 API
+Bundle-SymbolicName: org.junit5.api
+Bundle-Version: 5.0.0
+Bundle-ClassPath: junit5-api-5.0.0-SNAPSHOT.jar
+Export-Package: org.junit.gen5.api,
+ org.junit.gen5.api.extension
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

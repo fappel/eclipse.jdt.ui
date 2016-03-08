@@ -213,6 +213,10 @@ public class JUnitLaunchConfigurationDelegate extends AbstractJavaLaunchConfigur
 			if (isJUnit4Configuration && ! CoreTestSearchEngine.hasTestAnnotation(javaProject)) {
 				abort(JUnitMessages.JUnitLaunchConfigurationDelegate_error_junit4notonpath, null, IJUnitStatusConstants.ERR_JUNIT_NOT_ON_PATH);
 			}
+			boolean isJUnit5Configuration= TestKindRegistry.JUNIT5_TEST_KIND_ID.equals(testKind.getId());
+			if (isJUnit5Configuration && ! CoreTestSearchEngine.hasJUnit5TestAnnotation(javaProject)) {
+				abort(JUnitMessages.JUnitLaunchConfigurationDelegate_error_junit5notonpath, null, IJUnitStatusConstants.ERR_JUNIT_NOT_ON_PATH);
+			}
 		} finally {
 			monitor.done();
 		}

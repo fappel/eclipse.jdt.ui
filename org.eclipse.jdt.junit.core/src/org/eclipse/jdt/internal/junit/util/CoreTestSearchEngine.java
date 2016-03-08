@@ -98,7 +98,9 @@ public class CoreTestSearchEngine {
 
 	public static boolean hasTestCaseType(IJavaProject javaProject) {
 		try {
-			return javaProject != null && javaProject.findType(JUnitCorePlugin.TEST_SUPERCLASS_NAME) != null;
+			return javaProject != null 
+			    && (    javaProject.findType(JUnitCorePlugin.TEST_SUPERCLASS_NAME) != null
+			         || javaProject.findType(JUnitCorePlugin.JUNIT5_ANNOTATION_NAME) != null );
 		} catch (JavaModelException e) {
 			// not available
 		}
@@ -116,6 +118,18 @@ public class CoreTestSearchEngine {
 					IClasspathEntry cpEntry= root.getRawClasspathEntry();
 					return ! JUnitCore.JUNIT3_CONTAINER_PATH.equals(cpEntry.getPath());
 				}
+			}
+		} catch (JavaModelException e) {
+			// not available
+		}
+		return false;
+	}
+	
+
+	public static boolean hasJUnit5TestAnnotation(IJavaProject project) {
+		try {
+			if (project != null) {
+				return project.findType(JUnitCorePlugin.JUNIT5_ANNOTATION_NAME) != null;
 			}
 		} catch (JavaModelException e) {
 			// not available
@@ -252,6 +266,10 @@ public class CoreTestSearchEngine {
 	public static boolean is50OrHigher(String compliance) {
 		return !isVersionLessThan(compliance, JavaCore.VERSION_1_5);
 	}
+	
+	public static boolean is80OrHigher(String compliance) {
+		return !isVersionLessThan(compliance, JavaCore.VERSION_1_8);
+	}
 
 	/**
 	 * Checks if the given project or workspace has source compliance 5.0 or greater.
@@ -262,6 +280,12 @@ public class CoreTestSearchEngine {
 	public static boolean is50OrHigher(IJavaProject project) {
 		String source= project != null ? project.getOption(JavaCore.COMPILER_SOURCE, true) : JavaCore.getOption(JavaCore.COMPILER_SOURCE);
 		return is50OrHigher(source);
+	}
+	
+
+	public static boolean is80OrHigher(IJavaProject project) {
+		String source= project != null ? project.getOption(JavaCore.COMPILER_SOURCE, true) : JavaCore.getOption(JavaCore.COMPILER_SOURCE);
+		return is80OrHigher(source);
 	}
 // ---
 

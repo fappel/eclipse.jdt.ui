@@ -62,6 +62,7 @@ public class JUnitCorePlugin extends Plugin {
 	public final static String TEST_INTERFACE_NAME= "junit.framework.Test"; //$NON-NLS-1$
 
 	public final static String JUNIT4_ANNOTATION_NAME= "org.junit.Test"; //$NON-NLS-1$
+	public final static String JUNIT5_ANNOTATION_NAME= "org.junit.gen5.api.Test"; //$NON-NLS-1$
 	public static final String SIMPLE_TEST_INTERFACE_NAME= "Test"; //$NON-NLS-1$
 
 	/**

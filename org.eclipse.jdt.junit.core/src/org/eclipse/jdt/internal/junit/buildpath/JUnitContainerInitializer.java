@@ -47,6 +47,7 @@ public class JUnitContainerInitializer extends ClasspathContainerInitializer {
 	private final static String JUNIT3_8_1= "3.8.1"; //$NON-NLS-1$
 	private final static String JUNIT3= "3"; //$NON-NLS-1$
 	private final static String JUNIT4= "4"; //$NON-NLS-1$
+	private final static String JUNIT5= "5"; //$NON-NLS-1$
 
 	private static class JUnitContainer implements IClasspathContainer {
 
@@ -65,6 +66,9 @@ public class JUnitContainerInitializer extends ClasspathContainerInitializer {
 
 		@Override
 		public String getDescription() {
+			if (JUnitCore.JUNIT5_CONTAINER_PATH.equals(fPath)) {
+				return JUnitMessages.JUnitContainerInitializer_description_junit5;
+			}
 			if (JUnitCore.JUNIT4_CONTAINER_PATH.equals(fPath)) {
 				return JUnitMessages.JUnitContainerInitializer_description_junit4;
 			}
@@ -108,6 +112,8 @@ public class JUnitContainerInitializer extends ClasspathContainerInitializer {
 		} else if (JUNIT4.equals(version)) {
 			entry= BuildPathSupport.getJUnit4LibraryEntry();
 			entry2= BuildPathSupport.getHamcrestCoreLibraryEntry();
+		} else if( JUNIT5.equals(version)) {
+			entry= BuildPathSupport.getJUnit5LibraryEntry();
 		}
 		IClasspathEntry[] entries;
 		if (entry == null) {
@@ -201,6 +207,8 @@ public class JUnitContainerInitializer extends ClasspathContainerInitializer {
 			} else {
 				return JUnitPreferencesConstants.HAMCREST_CORE_JAVADOC;
 			}
+		} else if(JUNIT5.equals(version)) {
+			return JUnitPreferencesConstants.JUNIT5_JAVADOC;
 		}
 		return null;
 	}
@@ -240,6 +248,8 @@ public class JUnitContainerInitializer extends ClasspathContainerInitializer {
 				return JUnitMessages.JUnitContainerInitializer_description_initializer_junit3;
 			} else if (JUNIT4.equals(version)) {
 				return JUnitMessages.JUnitContainerInitializer_description_initializer_junit4;
+			} else if (JUNIT5.equals(version)) {
+				return JUnitMessages.JUnitContainerInitializer_description_initializer_junit5;
 			}
 		}
 		return JUnitMessages.JUnitContainerInitializer_description_initializer_unresolved;
